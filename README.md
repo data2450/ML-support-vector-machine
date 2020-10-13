@@ -63,9 +63,10 @@ they take the original input data space and transform it into new higher dimensi
 
 Given a feature vector  [x1,x2,...,xn]  (bias not included), we can transform it to polynomial features, just like what we did in linear regression and logistic regression. For example, a 2nd degree polynomial transformation of  [x1,x2,x3]  through PolynomialFeatures(degree = 2, include_bias=False) will be  [x1,x2,x21,x22,x23,x1x2,x1x3,x2x3] . A SVM classifier can be trained on these new features. Instead of  w1x1+w2x2+w3x3+b , we will have  w1x1+w2x2+w3x21+w4x22+w5x23+w6x1x2+w7x1x3+w8x2x3+b . Let's look at the following example:
 
-2) RBF(radial basis function kernal)
+**2) RBF(radial basis function kernal)
 
-The parameter coef0 in SVC determines how much the high-degree polynomials affect prediction versus low-degree polynomials. The discussion delow is optional, and you don't have to understand it to proceed.
-The coef0 is the  r  in the polynomial kernal function
+Another way to construct non-linear SVM is to add new features by computing the similarity between each datapoint  x   to certain landmarks  l . A popular definition of the similarity function is the Gaussian Radial Basis Function (RBF):
 
-K(x,x')=exp[-
+ϕγ(x,l )=exp(−γ∥x − l∥^2)
+Where  ∥x⃗ −l⃗ ∥2=(x1−l1)2+(x2−l2)2+...+(xn−ln)2 . In case of a 1D input feature  x  and a landmark  l=0 , we can plot the similarity function as follows:
+
