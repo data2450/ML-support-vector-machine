@@ -15,13 +15,13 @@ Linear support vector machine(LSVM)
 The strength of regularization is determined by C
 (c controlls the margin between two classes)
 
-Larger values of C: less regularization(margin moderate ,small)
+Larger values of C: less regularization(fit the training set with few errors as possible,small immersion decision boundary)
 
 – Fit the training data as well as possible
 
 – Each individual data point is important to classify correctly
 
-Smaller values of C: more regularization(margin is  large)
+Smaller values of C: more regularization(tolernt to errors in favour capturaing the majority of datapoints correctly with a larger margin)
 
 – More tolerant of errors on individual data points
 
@@ -53,4 +53,19 @@ term in regression models
 • C: regularization weight for LinearSVC and
 LogisticRegression classification models(default=1)
 
+# non lineraly seprable svm
+SVM, at its original form, can only classify linearly separable variables. Yet it can be easily adapted to conduct complex nonlinear classifications by adding non-linear features. A very powerful extension of linear support vector machines called kernelized support vector machine
+# working of kernalized SVMS
+they take the original input data space and transform it into new higher dimensional feature space,where it becomes much easier to classify the transform to data using a linear classifier.
 
+# different kernals**
+**1)Polynomial kernal**
+
+Given a feature vector  [x1,x2,...,xn]  (bias not included), we can transform it to polynomial features, just like what we did in linear regression and logistic regression. For example, a 2nd degree polynomial transformation of  [x1,x2,x3]  through PolynomialFeatures(degree = 2, include_bias=False) will be  [x1,x2,x21,x22,x23,x1x2,x1x3,x2x3] . A SVM classifier can be trained on these new features. Instead of  w1x1+w2x2+w3x3+b , we will have  w1x1+w2x2+w3x21+w4x22+w5x23+w6x1x2+w7x1x3+w8x2x3+b . Let's look at the following example:
+
+2) RBF(radial basis function kernal)
+
+The parameter coef0 in SVC determines how much the high-degree polynomials affect prediction versus low-degree polynomials. The discussion delow is optional, and you don't have to understand it to proceed.
+The coef0 is the  r  in the polynomial kernal function
+
+K(x,x')=exp[-
